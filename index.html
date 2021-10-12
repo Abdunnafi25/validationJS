@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url('bg1.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            padding-top: 5%;
+            padding-bottom: 5%;
+        }
+    </style>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+    <title>Profile Abdun Nafi'</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1 style="text-align: center; color: white;">Formulir Data Vaksinasi Mahasiswa ITS</h1>
+    </div>
+
+    <div class="container">
+        <div class="card" style="background-color: rgb(128, 186, 192)">
+            <div class="card-body" style="color: white;">
+                <form name="formVaksinasi" action="" method="post" onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input class="form-control" name="nama" id="nama" maxlength="40" minlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label>NRP</label>
+                        <input class="form-control" name="nrp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted"><i>Email Akan Digunakan Untuk Mengirimkan Notifikasi.</i></small>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold mt-1">Jenis Kelamin</label>
+                        <br>
+                        <input type="radio" id="dosis0" name="jenisKelamin" value="2">
+                        <label for="dosis0">Laki-laki</label><br>
+                        <input type="radio" id="dosis1" name="jenisKelamin" value="1">
+                        <label for="dosis1">Perempuan</label><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Jurusan</label>
+                        <input class="form-control" name="jurusan" id="jurusan">
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea name="alamat" id="" cols="30" rows="3" placeholder="Alamat Lengkap" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Apakah sudah menerima vaksinasi Covid-19?</label>
+                        <select onchange="isVaksin()" name="ket-vaksin" class="form-control">
+                    <option value="0">Pilih Status Vaksin</option>
+                    <option value="1">Sudah</option>
+                    <option value="2">Belum</option>
+                </select>
+                    </div>
+                    <div id="sudah-vaksin" style="display: none;">
+                        <h6>Informasi Sudah Vaksinasi</h6>
+                        <hr>
+                        <div class="form-group">
+                            <label>Jenis Vaksin</label>
+                            <select name="jenis-vaksin" class="form-control">
+                        <option value="0">Pilih Salah Satu</option>
+                        <option value="1">Sinovac</option>
+                        <option value="2">AstraZeneca</option>
+                        <option value="3">Novavax</option>
+                        <option value="4">Sinopharm</option>
+                        <option value="5">Moderna</option>
+                        <option value="6">Pfizer</option>
+                    </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Dosis Ke</label>
+                            <input type="text" name="dosis" placeholder="" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Sertifikat</label>
+                            <input type="text" name="no-sertif" placeholder="" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Vaksinasi</label>
+                            <input type="date" name="tgl-vaksin" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div id="belum-vaksin" style="display: none;">
+                        <h6>Informasi Belum Vaksinasi</h6>
+                        <hr>
+                        <div class="form-group">
+                            <label>Alasan Belum Vaksinasi</label>
+                            <select name="alasan-vaksin" class="form-control">
+                        <option value="0">Pilih Salah Satu</option>
+                        <option value="1">Mendapatkan serangan alergi berat, asma, atau lupus (dalam waktu kurang dari 3 bulan)</option>
+                        <option value="2">Sedang mendapatkan pengobatan untuk gangguan pembekuan darah, kelainan darah, dan defisiensi imun</option>
+                        <option value="3">Sedang mendapat pengobatan immunosupressan seperti kortikosteroid, kemoterapi, dan penerima produk darah/transfusi</option>
+                        <option value="4">Berstatus sebagai penyintas COVID-19 dalam waktu kurang dari 3 bulan</option>
+                        <option value="5">Belum ada program vaksinasi COVID-19 di wilayah tempat tinggal</option>
+                        <option value="6">Lain-lain (sebutkan)</option>
+                    </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Alasan Lain</label>
+                            <textarea name="alasan-lain" id="" cols="30" rows="3" placeholder="Isi jika memilih alasan 'Lain-lain', kosongkan jika tidak" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="btnFinish">
+                        <button type="submit" class="btn btn-primary btnSubmit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
